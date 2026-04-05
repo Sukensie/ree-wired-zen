@@ -1,47 +1,46 @@
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
 
 const testimonials = [
   {
     quote: "It's easier to practise in VR, without all the everyday distractions…",
-    author: "Test User",
     role: "Depression recovery",
+    x: "5%", y: "8%",
   },
   {
     quote: "Training the brain to handle my thoughts better – I find that genuinely fascinating and very useful…",
-    author: "Test User",
     role: "Stress management",
+    x: "55%", y: "2%",
   },
   {
     quote: "Helped me learn to focus on something other than my thoughts…",
-    author: "Test User",
     role: "Anxiety relief",
+    x: "28%", y: "38%",
   },
   {
     quote: "The first exercise helped me move from negative thoughts to focusing on what's around me here and now…",
-    author: "Test User",
     role: "Mindfulness training",
+    x: "65%", y: "42%",
   },
   {
     quote: "Really pleasant experience – lovely voice and great exercises…",
-    author: "Test User",
     role: "General wellbeing",
+    x: "8%", y: "68%",
   },
   {
     quote: "The sessions could easily last a bit longer — I didn't want them to end…",
-    author: "Test User",
     role: "Rumination recovery",
+    x: "52%", y: "72%",
   },
 ];
 
 const TestimonialsSection = () => (
-  <section className="section-padding bg-background" id="testimonials">
+  <section className="relative section-padding bg-background overflow-hidden" id="testimonials">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-8"
       >
         <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">Experiences from testers</p>
         <h2 className="font-heading font-bold text-3xl md:text-5xl text-foreground">
@@ -49,26 +48,42 @@ const TestimonialsSection = () => (
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Mobile: stacked layout */}
+      <div className="md:hidden space-y-4">
         {testimonials.map((t, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="bg-section-light rounded-xl p-8 relative group hover:shadow-lg transition-all"
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="relative bg-section-light rounded-2xl px-5 py-4 shadow-sm border border-border/30"
           >
-            <Quote className="h-8 w-8 text-primary/20 mb-4" />
-            <p className="text-foreground text-base leading-relaxed mb-6 italic">"{t.quote}"</p>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-primary font-heading font-bold text-sm">{t.author[0]}</span>
-              </div>
-              <div>
-                <p className="font-heading font-semibold text-sm text-foreground">{t.author}</p>
-                <p className="text-muted-foreground text-xs">{t.role}</p>
-              </div>
+            <p className="text-foreground text-sm leading-relaxed italic">"{t.quote}"</p>
+            <p className="text-primary text-xs font-heading font-semibold mt-2">{t.role}</p>
+            {/* Speech bubble tail */}
+            <div className="absolute -bottom-2 left-8 w-4 h-4 bg-section-light rotate-45 border-b border-r border-border/30" />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Desktop: floating bubbles */}
+      <div className="hidden md:block relative" style={{ height: "520px" }}>
+        {testimonials.map((t, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: i * 0.12, type: "spring", stiffness: 120 }}
+            className="absolute max-w-xs"
+            style={{ left: t.x, top: t.y }}
+          >
+            <div className="relative bg-section-light rounded-2xl px-5 py-4 shadow-md hover:shadow-lg border border-border/20 hover:border-primary/20 transition-all duration-300 group cursor-default">
+              <p className="text-foreground text-sm leading-relaxed italic">"{t.quote}"</p>
+              <p className="text-primary text-xs font-heading font-semibold mt-2">{t.role}</p>
+              {/* Speech bubble tail */}
+              <div className="absolute -bottom-2 left-6 w-3.5 h-3.5 bg-section-light rotate-45 border-b border-r border-border/20 group-hover:border-primary/20 transition-colors" />
             </div>
           </motion.div>
         ))}
