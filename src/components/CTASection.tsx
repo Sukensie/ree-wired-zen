@@ -1,0 +1,38 @@
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import oceanBg from "@/assets/ocean-bg.jpg";
+
+const CTASection = () => (
+  <section className="relative section-padding overflow-hidden">
+    <div className="absolute inset-0">
+      <img src={oceanBg} alt="" className="w-full h-full object-cover" loading="lazy" width={1920} height={800} />
+      <div className="absolute inset-0 bg-hero-overlay" />
+    </div>
+
+    <div className="relative z-10 max-w-3xl mx-auto text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="font-heading font-bold text-3xl md:text-5xl text-primary-foreground mb-6">
+          Do you still have a question?<br />We're happy to help.
+        </h2>
+        <p className="text-primary-foreground/70 text-lg mb-10 max-w-xl mx-auto">
+          Take the first step towards breaking free from ruminating thoughts. Your mental fitness journey starts here.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button size="lg" className="text-base px-8 py-6 bg-primary-foreground text-foreground hover:bg-primary-foreground/90">
+            Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+          <Button size="lg" variant="outline" className="text-base px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+            Contact Us
+          </Button>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+);
+
+export default CTASection;
