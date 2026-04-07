@@ -80,7 +80,7 @@ const EvidenceSection = () => (
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="text-center py-6"
           >
-            <p className="font-heading font-extrabold text-4xl md:text-5xl text-white mb-2">{s.value}</p>
+            <p className={`font-heading font-extrabold text-4xl md:text-5xl mb-2 ${i % 2 === 0 ? 'text-white' : 'text-orange'}`}>{s.value}</p>
             <p className="text-white/50 text-sm leading-relaxed">{s.label}</p>
           </motion.div>
         ))}
