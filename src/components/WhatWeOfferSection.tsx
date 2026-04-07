@@ -66,8 +66,8 @@ const WhatWeOfferSection = () => (
             width={800}
             height={600}
           />
-          <div className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-xl p-5 border border-border">
-            <p className="font-heading font-bold text-2xl text-primary">93%</p>
+          <div className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-xl p-5 border border-orange/30">
+            <p className="font-heading font-bold text-2xl text-orange">93%</p>
             <p className="text-muted-foreground text-xs">of users report feeling calmer after first session</p>
           </div>
         </motion.div>

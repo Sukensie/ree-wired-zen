@@ -28,7 +28,7 @@ const HeroSection = () => (
           A VR-based mental fitness tool that breaks the vicious cycle of thoughts — from the comfort of your home. Anonymous, evidence-based, and designed for you.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button size="lg" className="text-base px-8 py-6">
+          <Button size="lg" className="text-base px-8 py-6 bg-orange text-orange-foreground hover:bg-orange/90">
             Start Your Journey <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <Button size="lg" variant="outline" className="text-base px-8 py-6 border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20">

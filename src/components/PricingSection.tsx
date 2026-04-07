@@ -35,7 +35,7 @@ const PricingSection = () => (
         viewport={{ once: true }}
         className="bg-card rounded-2xl shadow-xl border border-border overflow-hidden"
       >
-        <div className="bg-primary p-8 text-center">
+        <div className="bg-gradient-to-r from-primary to-orange p-8 text-center">
           <p className="text-primary-foreground/80 font-heading text-sm mb-2">Complete Mental Fitness Kit</p>
           <div className="flex items-baseline justify-center gap-2">
             <span className="font-heading font-extrabold text-5xl text-primary-foreground">1.199</span>
@@ -57,7 +57,7 @@ const PricingSection = () => (
           </div>
 
           <div className="text-center">
-            <Button size="lg" className="text-base px-12 py-6">
+            <Button size="lg" className="text-base px-12 py-6 bg-orange text-orange-foreground hover:bg-orange/90">
               Create Your Account <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <p className="text-muted-foreground text-xs mt-4">Free 14-day trial · No credit card required</p>

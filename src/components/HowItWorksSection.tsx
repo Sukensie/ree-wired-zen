@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { ShoppingBag, Download, Headphones, TrendingUp } from "lucide-react";
 
 const steps = [
-  { num: "01", icon: ShoppingBag, title: "Order your kit", desc: "Get an affordable VR headset and access to the Ree-Wired app.", color: "from-primary to-primary/80" },
-  { num: "02", icon: Download, title: "Choose a scenario", desc: "Pick from immersive 3D environments designed for your needs.", color: "from-primary/90 to-primary/70" },
-  { num: "03", icon: Headphones, title: "Start training", desc: "Put on your headset and follow guided voice-led exercises.", color: "from-primary/80 to-primary/60" },
-  { num: "04", icon: TrendingUp, title: "Track progress", desc: "Monitor your mental fitness journey on your personal dashboard.", color: "from-primary/70 to-primary/50" },
+  { num: "01", icon: ShoppingBag, title: "Order your kit", desc: "Get an affordable VR headset and access to the Ree-Wired app.", color: "from-primary to-primary/80", dot: false },
+  { num: "02", icon: Download, title: "Choose a scenario", desc: "Pick from immersive 3D environments designed for your needs.", color: "from-orange to-orange/80", dot: true },
+  { num: "03", icon: Headphones, title: "Start training", desc: "Put on your headset and follow guided voice-led exercises.", color: "from-primary/90 to-primary/70", dot: false },
+  { num: "04", icon: TrendingUp, title: "Track progress", desc: "Monitor your mental fitness journey on your personal dashboard.", color: "from-orange/90 to-orange/70", dot: true },
 ];
 
 const HowItWorksSection = () => (
