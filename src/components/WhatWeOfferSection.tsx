@@ -4,11 +4,11 @@ import homeVr from "@/assets/home-vr.jpg";
 
 const features = [
   { icon: Smartphone, title: "Use your own smartphone", desc: "No expensive equipment needed" },
-  { icon: Headphones, title: "Affordable VR headset", desc: "Starting from just 200 DKK" },
-  { icon: Monitor, title: "3D immersive scenarios", desc: "Guided voice-led training programs" },
-  { icon: Sparkles, title: "Meta-Cognitive Therapy", desc: "Proven psychological principles" },
   { icon: Shield, title: "Completely anonymous", desc: "No stigma, total privacy" },
   { icon: Clock, title: "Train anytime", desc: "Use as often as you need, at home" },
+  { icon: Headphones, title: "Affordable Solution", desc: "Simple and efficient VR set with Ree-Wired software." },
+  { icon: Monitor, title: "Persoanl mental fitness centre", desc: "Proven psychological principles" },
+  { icon: Sparkles, title: "Track your improvement", desc: "Train and track – all in your personal Ree-Wired dashboard." },
 ];
 
 const WhatWeOfferSection = () => (
@@ -26,7 +26,7 @@ const WhatWeOfferSection = () => (
             A mental fitness tool you use at home.
           </h2>
           <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
-            Ree-Wired uses VR technology combined with scientifically-backed Meta-Cognitive Training to help you break free from ruminating thoughts — the kind that can lead to depression, anxiety, and stress.
+            Ree-Wired uses VR technology combined with scientifically backed mental traning to bereak from rumination thoughts. The kind that can lead to depression, anxiety, social isolation, stress and other serious challenges.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

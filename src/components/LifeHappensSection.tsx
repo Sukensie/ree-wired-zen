@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { Heart, Brain, ShieldAlert, Users } from "lucide-react";
 
 const triggers = [
-  { icon: Heart, label: "Divorce & Loss", desc: "When relationships break down and grief takes hold." },
-  { icon: ShieldAlert, label: "Stress & Burnout", desc: "Workplace pressure, layoffs, and overwhelming demands." },
-  { icon: Brain, label: "Anxiety & Rumination", desc: "Thoughts that spiral and keep you trapped in loops." },
-  { icon: Users, label: "Social Isolation", desc: "Loneliness and withdrawal from the world around you." },
+  { icon: Heart, label: "Divorce & Loss", desc: "When relations break you keep asking yourselves the same questions." },
+  { icon: ShieldAlert, label: "Work", desc: "The job situation or lack of one. It creates a lot of questions with no answers." },
+  { icon: Brain, label: "Anxiety", desc: "Tomorrow feels full of danger and is more important than today." },
+  { icon: Users, label: "Social life", desc: "It is easier to be by myself than socialise. How should I navigate in life?" },
 ];
 
 const LifeHappensSection = () => (
@@ -18,12 +18,12 @@ const LifeHappensSection = () => (
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">We understand</p>
+        <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">Life happens</p>
         <h2 className="font-heading font-bold text-3xl md:text-5xl text-foreground mb-4">
-          Life happens —<br />sometimes it's hard.
+          Everyone faces life's ups and downs.
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Everyone faces life's ups and downs. The downs can be triggered by many things — and when they hit hard, finding help shouldn't be harder.
+          The downs can trigger a vicious cycle of thoughts that keep you occupied day and night and won't let you be your best version of your selves.
         </p>
       </motion.div>
 
@@ -35,9 +35,9 @@ const LifeHappensSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="bg-section-light rounded-xl p-8 text-center group hover:shadow-lg transition-shadow"
+            className="bg-section-light-highlight rounded-xl p-8 text-center group transition-shadow"
           >
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition-colors">
+            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 transition-colors">
               <t.icon className="h-7 w-7 text-primary" />
             </div>
             <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{t.label}</h3>
@@ -53,9 +53,9 @@ const LifeHappensSection = () => (
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mt-16 text-center"
       >
-        <div className="inline-flex items-center gap-3 bg-primary/5 rounded-full px-8 py-4">
-          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          <p className="text-foreground font-heading font-medium">
+        <div className="inline-flex items-center gap-3 bg-orange/85 rounded-full px-8 py-4">
+          <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          <p className="text-white font-heading font-medium">
             There's a new way to deal with your vicious thoughts.
           </p>
         </div>

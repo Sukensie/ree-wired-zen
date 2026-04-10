@@ -36,7 +36,7 @@ const PrivacySection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.08 }}
-            className="flex items-start gap-4 p-6 rounded-xl bg-section-light"
+            className="flex items-start gap-4 p-6 rounded-xl bg-section-light-highlight "
           >
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
               <f.icon className="h-6 w-6 text-primary" />

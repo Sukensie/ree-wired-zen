@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -22,11 +22,21 @@ const Navbar = () => {
             </a>
           ))}
           <Button size="sm">Get Started</Button>
+          <a
+            href="#login"
+            aria-label="Log in"
+            title="Log in"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            <LogIn size={18} />
+          </a>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <button className="text-foreground" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -36,6 +46,14 @@ const Navbar = () => {
               {l}
             </a>
           ))}
+          <a
+            href="#login"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
+            onClick={() => setOpen(false)}
+          >
+            <LogIn size={16} />
+            <span>Log in</span>
+          </a>
           <Button size="sm" className="w-full">Get Started</Button>
         </div>
       )}

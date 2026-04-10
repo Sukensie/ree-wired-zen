@@ -7,7 +7,7 @@ const HeroSection = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
     <div className="absolute inset-0">
       <img src={heroImg} alt="VR mental wellness" className="w-full h-full object-cover" width={1920} height={1080} />
-      <div className="absolute inset-0 bg-hero-overlay" />
+      <div className="absolute inset-0 bg-hero-overlay-orange" />
     </div>
 
     <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-32 w-full">

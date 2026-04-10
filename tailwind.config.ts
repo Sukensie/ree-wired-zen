@@ -70,6 +70,7 @@ export default {
         section: {
           dark: "hsl(var(--section-dark))",
           light: "hsl(var(--section-light))",
+          "light-highlight": "hsl(var(--section-light-highlight))",
         },
       },
       borderRadius: {
