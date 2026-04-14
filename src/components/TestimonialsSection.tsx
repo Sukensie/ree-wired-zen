@@ -57,12 +57,12 @@ const TestimonialsSection = () => (
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="relative bg-section-light rounded-2xl px-5 py-4 shadow-sm border border-border/30"
+            className="relative bg-section-light-highlight rounded-2xl px-5 py-4 shadow-sm border border-border/30"
           >
             <p className="text-foreground text-sm leading-relaxed italic">"{t.quote}"</p>
             <p className="text-primary text-xs font-heading font-semibold mt-2">{t.role}</p>
             {/* Speech bubble tail */}
-            <div className="absolute -bottom-2 left-8 w-4 h-4 bg-section-light rotate-45 border-b border-r border-border/30" />
+            <div className="absolute -bottom-2 left-8 w-4 h-4 bg-section-light-highlight rotate-45 border-b border-r border-border/30" />
           </motion.div>
         ))}
       </div>
@@ -79,11 +79,11 @@ const TestimonialsSection = () => (
             className="absolute max-w-xs"
             style={{ left: t.x, top: t.y }}
           >
-            <div className="relative bg-section-light rounded-2xl px-5 py-4 shadow-md hover:shadow-lg border border-border/20 hover:border-primary/20 transition-all duration-300 group cursor-default">
+            <div className="relative bg-section-light-highlight rounded-2xl px-5 py-4 shadow-md border border-border/20 transition-all duration-300 group cursor-default">
               <p className="text-foreground text-sm leading-relaxed italic">"{t.quote}"</p>
               <p className="text-primary text-xs font-heading font-semibold mt-2">{t.role}</p>
               {/* Speech bubble tail */}
-              <div className="absolute -bottom-2 left-6 w-3.5 h-3.5 bg-section-light rotate-45 border-b border-r border-border/20 group-hover:border-primary/20 transition-colors" />
+              <div className="absolute -bottom-2 left-6 w-3.5 h-3.5 bg-section-light-highlight rotate-45 shadow-md border-b border-r border-border/20 transition-colors" />
             </div>
           </motion.div>
         ))}

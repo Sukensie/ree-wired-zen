@@ -47,18 +47,20 @@ const StakeholdersSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="bg-card rounded-2xl p-10 shadow-sm border border-border hover:shadow-lg transition-shadow"
+                className="bg-card rounded-2xl p-10 border border-gray-200"
               >
-                <img
-                  src={s.image}
-                  alt={s.name}
-                  className="w-12 h-12 rounded-full object-cover mb-6"
-                />
-                <p className="text-foreground leading-relaxed mb-6 italic">"{s.quote}"</p>
-                <div className="border-t border-border pt-4">
-                  <p className="font-heading font-bold text-foreground">{s.name}</p>
-                  <p className="text-muted-foreground text-sm">{s.role}, {s.org}</p>
+                <div className="mb-6 flex items-center gap-4">
+                  <img
+                    src={s.image}
+                    alt={s.name}
+                    className="h-12 w-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="font-heading font-bold text-foreground">{s.name}</p>
+                    <p className="text-sm text-muted-foreground">{s.role}, {s.org}</p>
+                  </div>
                 </div>
+                <p className="text-foreground leading-relaxed italic">"{s.quote}"</p>
               </motion.div>
             ))}
           </div>

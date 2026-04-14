@@ -48,7 +48,7 @@ const PricingSection = () => (
           <div className="grid sm:grid-cols-2 gap-4 mb-10">
             {included.map((item) => (
               <div key={item} className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                   <Check className="h-4 w-4 text-primary" />
                 </div>
                 <span className="text-foreground text-sm">{item}</span>

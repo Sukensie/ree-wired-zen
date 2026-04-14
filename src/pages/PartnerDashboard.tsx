@@ -31,14 +31,19 @@ const topPrograms = [
 ];
 
 const maxUsers = Math.max(...monthlyData.map((d) => d.users));
-const chartW = 100;
-const chartH = 50;
+const chartW = 800;
+const chartH = 260;
+const chartBottomPadding = 46;
+const chartSidePadding = 28;
+const plotLeft = chartSidePadding;
+const plotRight = chartW - chartSidePadding;
+const plotWidth = plotRight - plotLeft;
 const growthPoints = monthlyData.map((d, i) => ({
-  x: (i / (monthlyData.length - 1)) * chartW,
+  x: plotLeft + (i / (monthlyData.length - 1)) * plotWidth,
   y: chartH - (d.users / maxUsers) * chartH * 0.9,
 }));
 const growthLine = growthPoints.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
-const growthArea = `${growthLine} L ${chartW} ${chartH} L 0 ${chartH} Z`;
+const growthArea = `${growthLine} L ${plotRight} ${chartH} L ${plotLeft} ${chartH} Z`;
 
 const PartnerDashboard = () => {
   const navigate = useNavigate();
@@ -47,13 +52,18 @@ const PartnerDashboard = () => {
     <div className="min-h-screen bg-muted/30">
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
-          <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            aria-label="Go to homepage"
+            className="flex items-center gap-3"
+          >
             <img src={logo} alt="Ree-Wired" className="h-8 w-8" />
             <span className="font-heading font-bold text-foreground">ree-wired</span>
             <span className="text-xs bg-[hsl(var(--orange)/0.12)] text-[hsl(var(--orange))] px-2 py-0.5 rounded-full font-medium">Partner</span>
-          </div>
+          </button>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground hidden sm:block">Allianz Health</span>
+            <span className="text-sm text-muted-foreground hidden sm:block">Tryg.dk</span>
             <Button variant="ghost" size="sm" onClick={() => navigate("/login")} className="text-muted-foreground">
               <LogOut size={16} />
               <span className="hidden sm:inline ml-1">Sign out</span>
@@ -99,16 +109,30 @@ const PartnerDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-2">
-                <svg viewBox={`-2 -2 ${chartW + 4} ${chartH + 18}`} className="w-full h-44" preserveAspectRatio="none">
+                <svg
+                  viewBox={`0 0 ${chartW} ${chartH + chartBottomPadding}`}
+                  className="w-full h-auto"
+                  preserveAspectRatio="xMidYMid meet"
+                  shapeRendering="geometricPrecision"
+                >
                   {[0, 0.25, 0.5, 0.75, 1].map((pct) => (
-                    <line key={pct} x1={0} x2={chartW} y1={chartH * (1 - pct)} y2={chartH * (1 - pct)} stroke="hsl(var(--border))" strokeWidth={0.3} />
+                    <line
+                      key={pct}
+                      x1={plotLeft}
+                      x2={plotRight}
+                      y1={chartH * (1 - pct)}
+                      y2={chartH * (1 - pct)}
+                      stroke="hsl(var(--border))"
+                      strokeWidth={1}
+                    />
                   ))}
                   <motion.path d={growthArea} fill="url(#growthGrad)" initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ duration: 1 }} />
                   <motion.path
                     d={growthLine}
                     fill="none"
                     stroke="hsl(var(--primary))"
-                    strokeWidth={1.5}
+                    strokeWidth={3}
+                    vectorEffect="non-scaling-stroke"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     initial={{ pathLength: 0 }}
@@ -117,13 +141,28 @@ const PartnerDashboard = () => {
                   />
                   {growthPoints.map((p, i) => (
                     <motion.circle
-                      key={i} cx={p.x} cy={p.y} r={1.8}
-                      fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth={1}
+                      key={i}
+                      cx={p.x}
+                      cy={p.y}
+                      r={7}
+                      fill="hsl(var(--background))"
+                      stroke="hsl(var(--primary))"
+                      strokeWidth={3}
+                      vectorEffect="non-scaling-stroke"
                       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + i * 0.06 }}
                     />
                   ))}
                   {monthlyData.map((d, i) => (
-                    <text key={i} x={growthPoints[i].x} y={chartH + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 3.2 }}>{d.month}</text>
+                    <text
+                      key={i}
+                      x={growthPoints[i].x}
+                      y={chartH + 24}
+                      textAnchor="middle"
+                      className="fill-muted-foreground"
+                      style={{ fontSize: 14 }}
+                    >
+                      {d.month}
+                    </text>
                   ))}
                   <defs>
                     <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">

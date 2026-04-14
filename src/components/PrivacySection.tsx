@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Eye, Lock, UserX, Server, Fingerprint } from "lucide-react";
+import { ShieldCheck, EyeOff, Lock, UserX, Server, Heart } from "lucide-react";
 
 const features = [
   { icon: UserX, title: "Fully anonymous", desc: "No personal data required to use the platform." },
   { icon: Lock, title: "End-to-end encrypted", desc: "Your sessions and progress are protected at every step." },
-  { icon: Eye, title: "No tracking", desc: "We don't sell or share your data. Ever." },
+  { icon: EyeOff, title: "No tracking", desc: "We don't sell or share your data. Ever." },
   { icon: ShieldCheck, title: "GDPR compliant", desc: "Built to the highest European privacy standards." },
   { icon: Server, title: "EU-hosted data", desc: "All data stored securely within the European Union." },
-  { icon: Fingerprint, title: "No stigma", desc: "Use at home, on your terms, completely privately." },
+  { icon: Heart, title: "No stigma", desc: "Use at home, on your terms, completely privately." },
 ];
 
 const PrivacySection = () => (
@@ -38,8 +38,8 @@ const PrivacySection = () => (
             transition={{ duration: 0.4, delay: i * 0.08 }}
             className="flex items-start gap-4 p-6 rounded-xl bg-section-light-highlight "
           >
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <f.icon className="h-6 w-6 text-primary" />
+            <div className="w-12 h-12 rounded-xl bg-primary/85 flex items-center justify-center flex-shrink-0">
+              <f.icon className="h-6 w-6 text-white" />
             </div>
             <div>
               <h3 className="font-heading font-semibold text-foreground mb-1">{f.title}</h3>

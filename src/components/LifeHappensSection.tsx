@@ -37,8 +37,8 @@ const LifeHappensSection = () => (
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="bg-section-light-highlight rounded-xl p-8 text-center group transition-shadow"
           >
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5 transition-colors">
-              <t.icon className="h-7 w-7 text-primary" />
+            <div className="w-14 h-14 rounded-full bg-primary/85 flex items-center justify-center mx-auto mb-5 transition-colors">
+              <t.icon className="h-7 w-7 text-white" />
             </div>
             <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{t.label}</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">{t.desc}</p>
