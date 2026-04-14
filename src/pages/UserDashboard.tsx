@@ -1,29 +1,50 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { LogOut, TrendingUp, Calendar, Clock, CreditCard, ChevronRight, Brain, Heart, Zap } from "lucide-react";
+import { LogOut, TrendingUp, Calendar, Clock, CreditCard, Brain, Heart, Zap, Flame, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import logo from "@/assets/logo.png";
 
-const weeklyData = [
-  { day: "Mon", minutes: 25 },
-  { day: "Tue", minutes: 30 },
-  { day: "Wed", minutes: 0 },
-  { day: "Thu", minutes: 20 },
-  { day: "Fri", minutes: 35 },
-  { day: "Sat", minutes: 15 },
-  { day: "Sun", minutes: 0 },
+// 4-week streak calendar data (1 = completed, 0 = missed, 2 = today)
+const streakWeeks = [
+  [1, 1, 0, 1, 1, 1, 0],
+  [1, 1, 1, 1, 0, 1, 1],
+  [0, 1, 1, 1, 1, 1, 0],
+  [1, 1, 1, 1, 1, 2, 0],
 ];
+const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
 
-const maxMin = Math.max(...weeklyData.map((d) => d.minutes));
+// Wellbeing trend over 8 weeks
+const wellbeingData = [
+  { week: "W1", score: 42 },
+  { week: "W2", score: 45 },
+  { week: "W3", score: 48 },
+  { week: "W4", score: 52 },
+  { week: "W5", score: 55 },
+  { week: "W6", score: 53 },
+  { week: "W7", score: 59 },
+  { week: "W8", score: 63 },
+];
+const maxScore = 80;
+const minScore = 30;
 
 const UserDashboard = () => {
   const navigate = useNavigate();
 
+  // Build SVG line path for wellbeing
+  const chartW = 100;
+  const chartH = 50;
+  const points = wellbeingData.map((d, i) => {
+    const x = (i / (wellbeingData.length - 1)) * chartW;
+    const y = chartH - ((d.score - minScore) / (maxScore - minScore)) * chartH;
+    return { x, y };
+  });
+  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+  const areaPath = `${linePath} L ${chartW} ${chartH} L 0 ${chartH} Z`;
+
   return (
     <div className="min-h-screen bg-muted/30">
-      {/* Top bar */}
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-2">
@@ -41,7 +62,6 @@ const UserDashboard = () => {
       </header>
 
       <main className="max-w-6xl mx-auto px-6 py-8 space-y-6">
-        {/* Welcome */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-2xl font-heading font-bold text-foreground">Your Journey</h1>
           <p className="text-muted-foreground text-sm mt-1">Keep going — every session counts.</p>
@@ -72,61 +92,138 @@ const UserDashboard = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Weekly activity */}
-          <motion.div className="md:col-span-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-            <Card className="border-border/50">
+          {/* Streak calendar */}
+          <motion.div className="md:col-span-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+            <Card className="border-border/50 h-full">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-heading flex items-center gap-2">
-                  <TrendingUp size={16} className="text-primary" /> Weekly Activity
+                  <Flame size={16} className="text-[hsl(var(--orange))]" /> Your Streak
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-2">
-                <div className="flex items-end gap-2 h-36">
-                  {weeklyData.map((d) => (
-                    <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
-                      <div className="w-full rounded-t-md bg-primary/15 relative" style={{ height: "100%" }}>
+                {/* Day labels */}
+                <div className="grid grid-cols-7 gap-1.5 mb-1.5">
+                  {dayLabels.map((d, i) => (
+                    <span key={i} className="text-[9px] text-muted-foreground text-center">{d}</span>
+                  ))}
+                </div>
+                {/* Streak grid */}
+                <div className="space-y-1.5">
+                  {streakWeeks.map((week, wi) => (
+                    <div key={wi} className="grid grid-cols-7 gap-1.5">
+                      {week.map((status, di) => (
                         <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: `${maxMin ? (d.minutes / maxMin) * 100 : 0}%` }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
-                          className="absolute bottom-0 left-0 right-0 rounded-t-md bg-gradient-to-t from-primary to-primary/70"
-                        />
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">{d.day}</span>
+                          key={di}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.3 + wi * 0.05 + di * 0.02 }}
+                          className={`aspect-square rounded-md flex items-center justify-center text-[10px] ${
+                            status === 2
+                              ? "bg-[hsl(var(--orange))] text-white ring-2 ring-[hsl(var(--orange)/0.3)]"
+                              : status === 1
+                              ? "bg-primary/20 text-primary"
+                              : "bg-muted text-muted-foreground/40"
+                          }`}
+                        >
+                          {status >= 1 && <Check size={12} />}
+                        </motion.div>
+                      ))}
                     </div>
                   ))}
                 </div>
+                <p className="text-[10px] text-muted-foreground text-center mt-3">Last 4 weeks • 20 of 28 days</p>
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* Current program */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+          {/* Wellbeing trend */}
+          <motion.div className="md:col-span-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }}>
             <Card className="border-border/50 h-full">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base font-heading flex items-center gap-2">
-                  <Calendar size={16} className="text-[hsl(var(--orange))]" /> Current Program
+                  <TrendingUp size={16} className="text-emerald-500" /> Wellbeing Trend
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 pt-2">
-                <div>
-                  <p className="text-sm font-medium text-foreground">MCT — Module 3</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">Rumination & Worry Control</p>
+              <CardContent className="pt-2">
+                <svg viewBox={`-2 -2 ${chartW + 4} ${chartH + 18}`} className="w-full h-36" preserveAspectRatio="none">
+                  {/* Grid lines */}
+                  {[0, 0.25, 0.5, 0.75, 1].map((pct) => (
+                    <line key={pct} x1={0} x2={chartW} y1={chartH * (1 - pct)} y2={chartH * (1 - pct)} stroke="hsl(var(--border))" strokeWidth={0.3} />
+                  ))}
+                  {/* Area fill */}
+                  <motion.path
+                    d={areaPath}
+                    fill="url(#wellbeingGrad)"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.3 }}
+                    transition={{ duration: 1 }}
+                  />
+                  {/* Line */}
+                  <motion.path
+                    d={linePath}
+                    fill="none"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth={1.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.2, delay: 0.3 }}
+                  />
+                  {/* Dots */}
+                  {points.map((p, i) => (
+                    <motion.circle
+                      key={i}
+                      cx={p.x} cy={p.y} r={1.8}
+                      fill="hsl(var(--background))"
+                      stroke="hsl(var(--primary))"
+                      strokeWidth={1}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5 + i * 0.08 }}
+                    />
+                  ))}
+                  {/* Week labels */}
+                  {wellbeingData.map((d, i) => (
+                    <text key={i} x={points[i].x} y={chartH + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 3.5 }}>{d.week}</text>
+                  ))}
+                  <defs>
+                    <linearGradient id="wellbeingGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(var(--primary))" />
+                      <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="flex justify-between text-[10px] text-muted-foreground mt-1 px-1">
+                  <span>Score: 42 → 63</span>
+                  <span className="text-emerald-500 font-medium">+50% improvement</span>
                 </div>
-                <div>
-                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                    <span>Progress</span>
-                    <span>62%</span>
-                  </div>
-                  <Progress value={62} className="h-2" />
-                </div>
-                <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Continue Session <ChevronRight size={14} />
-                </Button>
               </CardContent>
             </Card>
           </motion.div>
         </div>
+
+        {/* Current program — no continue button */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+          <Card className="border-border/50">
+            <CardContent className="p-5 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div className="flex items-center gap-3 shrink-0">
+                <Calendar size={20} className="text-[hsl(var(--orange))]" />
+                <div>
+                  <p className="text-sm font-medium text-foreground">MCT — Module 3</p>
+                  <p className="text-xs text-muted-foreground">Rumination & Worry Control</p>
+                </div>
+              </div>
+              <div className="flex-1 w-full">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                  <span>Progress</span>
+                  <span>62%</span>
+                </div>
+                <Progress value={62} className="h-2" />
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         {/* Subscription */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
