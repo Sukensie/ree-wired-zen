@@ -6,6 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import logo from "@/assets/logo.png";
 
 const monthlyData = [
+  { month: "Jul", users: 45 },
+  { month: "Aug", users: 72 },
+  { month: "Sep", users: 98 },
   { month: "Oct", users: 120 },
   { month: "Nov", users: 185 },
   { month: "Dec", users: 210 },
@@ -13,8 +16,6 @@ const monthlyData = [
   { month: "Feb", users: 345 },
   { month: "Mar", users: 410 },
 ];
-
-const maxUsers = Math.max(...monthlyData.map((d) => d.users));
 
 const kpis = [
   { label: "Active Users", value: "410", change: "+18.8%", up: true, icon: Users },
@@ -28,6 +29,16 @@ const topPrograms = [
   { name: "Stress & Anxiety", enrolled: 127, completion: 65 },
   { name: "Sleep Improvement", enrolled: 99, completion: 82 },
 ];
+
+const maxUsers = Math.max(...monthlyData.map((d) => d.users));
+const chartW = 100;
+const chartH = 50;
+const growthPoints = monthlyData.map((d, i) => ({
+  x: (i / (monthlyData.length - 1)) * chartW,
+  y: chartH - (d.users / maxUsers) * chartH * 0.9,
+}));
+const growthLine = growthPoints.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+const growthArea = `${growthLine} L ${chartW} ${chartH} L 0 ${chartH} Z`;
 
 const PartnerDashboard = () => {
   const navigate = useNavigate();
@@ -79,27 +90,51 @@ const PartnerDashboard = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* User growth chart */}
+          {/* User growth line chart */}
           <motion.div className="md:col-span-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
             <Card className="border-border/50">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base font-heading">User Growth</CardTitle>
+                <CardTitle className="text-base font-heading flex items-center gap-2">
+                  <TrendingUp size={16} className="text-primary" /> User Growth
+                </CardTitle>
               </CardHeader>
               <CardContent className="pt-2">
-                <div className="flex items-end gap-3 h-40">
-                  {monthlyData.map((d, i) => (
-                    <div key={d.month} className="flex-1 flex flex-col items-center gap-1">
-                      <div className="w-full rounded-t-md bg-primary/10 relative" style={{ height: "100%" }}>
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: `${(d.users / maxUsers) * 100}%` }}
-                          transition={{ duration: 0.6, delay: 0.2 + i * 0.05 }}
-                          className="absolute bottom-0 left-0 right-0 rounded-t-md bg-gradient-to-t from-primary to-primary/60"
-                        />
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">{d.month}</span>
-                    </div>
+                <svg viewBox={`-2 -2 ${chartW + 4} ${chartH + 18}`} className="w-full h-44" preserveAspectRatio="none">
+                  {[0, 0.25, 0.5, 0.75, 1].map((pct) => (
+                    <line key={pct} x1={0} x2={chartW} y1={chartH * (1 - pct)} y2={chartH * (1 - pct)} stroke="hsl(var(--border))" strokeWidth={0.3} />
                   ))}
+                  <motion.path d={growthArea} fill="url(#growthGrad)" initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ duration: 1 }} />
+                  <motion.path
+                    d={growthLine}
+                    fill="none"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth={1.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.2, delay: 0.3 }}
+                  />
+                  {growthPoints.map((p, i) => (
+                    <motion.circle
+                      key={i} cx={p.x} cy={p.y} r={1.8}
+                      fill="hsl(var(--background))" stroke="hsl(var(--primary))" strokeWidth={1}
+                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + i * 0.06 }}
+                    />
+                  ))}
+                  {monthlyData.map((d, i) => (
+                    <text key={i} x={growthPoints[i].x} y={chartH + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 3.2 }}>{d.month}</text>
+                  ))}
+                  <defs>
+                    <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(var(--primary))" />
+                      <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="flex justify-between text-[10px] text-muted-foreground mt-1 px-1">
+                  <span>45 → 410 users</span>
+                  <span className="text-emerald-500 font-medium">+811% growth</span>
                 </div>
               </CardContent>
             </Card>
