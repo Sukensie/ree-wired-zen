@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LogIn, Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
