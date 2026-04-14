@@ -9,7 +9,7 @@ const steps = [
 ];
 
 const HowItWorksSection = () => (
-  <section className="section-padding bg-background overflow-hidden">
+  <section className="section-padding bg-background overflow-hidden" id="how-it-works">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}

@@ -9,7 +9,7 @@ const triggers = [
 ];
 
 const LifeHappensSection = () => (
-  <section className="section-padding bg-background" id="how-it-works">
+  <section className="section-padding bg-background" id="life-happens">
     <div className="max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}

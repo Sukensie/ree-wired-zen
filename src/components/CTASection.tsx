@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import JoinWaitlistButton from "@/components/JoinWaitlistButton";
 import oceanBg from "@/assets/ocean-bg.jpg";
 
-const CTASection = () => (
+const CTASection = () => {
+  const navigate = useNavigate();
+  return (
   <section className="relative section-padding overflow-hidden">
     <div className="absolute inset-0">
       <img src={oceanBg} alt="" className="w-full h-full object-cover" loading="lazy" width={1920} height={800} />
@@ -23,16 +26,17 @@ const CTASection = () => (
           Take the first step towards breaking free from ruminating thoughts. Your mental fitness journey starts here.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="text-base px-8 py-6 bg-orange text-orange-foreground hover:bg-orange/90">
-            Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-          <Button size="lg" variant="outline" className="text-base px-8 py-6 border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20">
+          <JoinWaitlistButton size="lg" className="text-base px-8 py-6 bg-orange text-orange-foreground hover:bg-orange/90">
+            Join Waiting List
+          </JoinWaitlistButton>
+          <Button size="lg" variant="outline" className="text-base px-8 py-6 border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20" onClick={() => navigate('/contact')}>
             Contact Us
           </Button>
         </div>
       </motion.div>
     </div>
   </section>
-);
+  );
+};
 
 export default CTASection;

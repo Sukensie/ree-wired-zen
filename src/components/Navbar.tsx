@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LogIn, Menu, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import JoinWaitlistButton from "@/components/JoinWaitlistButton";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
@@ -23,7 +24,12 @@ const Navbar = () => {
               {l}
             </a>
           ))}
-          <Button size="sm">Get Started</Button>
+          <button
+            onClick={() => navigate("/contact")}
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            Contact Us
+          </button>
           <button
             onClick={() => navigate("/login")}
             aria-label="Log in"
@@ -49,13 +55,18 @@ const Navbar = () => {
             </a>
           ))}
           <button
+            className="block text-sm text-muted-foreground hover:text-primary"
+            onClick={() => { setOpen(false); navigate("/contact"); }}
+          >
+            Contact Us
+          </button>
+          <button
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
             onClick={() => { setOpen(false); navigate("/login"); }}
           >
             <LogIn size={16} />
             <span>Log in</span>
           </button>
-          <Button size="sm" className="w-full">Get Started</Button>
         </div>
       )}
     </nav>

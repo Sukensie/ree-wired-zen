@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import JoinWaitlistButton from "@/components/JoinWaitlistButton";
 
 const included = [
   "VR set included",
@@ -57,9 +58,9 @@ const PricingSection = () => (
           </div>
 
           <div className="text-center">
-            <Button size="lg" className="text-base px-12 py-6 bg-orange text-orange-foreground hover:bg-orange/90">
-              Create Your Account <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <JoinWaitlistButton size="lg" className="text-base px-12 py-6 bg-orange text-orange-foreground hover:bg-orange/90">
+              Join the waitlist
+            </JoinWaitlistButton>
             <p className="text-muted-foreground text-xs mt-4">You should find your own way to deal with your personal mental challenges. Ree-Wired offer a simple solution recommended by experts.</p>
           </div>
         </div>

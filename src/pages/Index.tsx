@@ -4,12 +4,12 @@ import LifeHappensSection from "@/components/LifeHappensSection";
 import WhatWeOfferSection from "@/components/WhatWeOfferSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import EvidenceSection from "@/components/EvidenceSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import StakeholdersSection from "@/components/StakeholdersSection";
+import TrustedVoicesSection from "@/components/TrustedVoicesSection";
 import PrivacySection from "@/components/PrivacySection";
 import PricingSection from "@/components/PricingSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import WarningButton from "@/components/WarningButton";
 
 const Index = () => (
   <div className="min-h-screen">
@@ -19,12 +19,12 @@ const Index = () => (
     <WhatWeOfferSection />
     <HowItWorksSection />
     <EvidenceSection />
-    <TestimonialsSection />
-    <StakeholdersSection />
+    <TrustedVoicesSection />
     <PrivacySection />
     <PricingSection />
     <CTASection />
     <Footer />
+    <WarningButton />
   </div>
 );
 
