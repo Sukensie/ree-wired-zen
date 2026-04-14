@@ -6,6 +6,7 @@ import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const links = ["How it works", "Evidence", "Testimonials", "Privacy", "Pricing"];
 
   return (
