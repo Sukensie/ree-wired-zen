@@ -23,14 +23,14 @@ const Navbar = () => {
             </a>
           ))}
           <Button size="sm">Get Started</Button>
-          <a
-            href="#login"
+          <button
+            onClick={() => navigate("/login")}
             aria-label="Log in"
             title="Log in"
             className="text-muted-foreground hover:text-primary transition-colors"
           >
             <LogIn size={18} />
-          </a>
+          </button>
         </div>
 
         <div className="md:hidden flex items-center gap-3">
@@ -47,14 +47,13 @@ const Navbar = () => {
               {l}
             </a>
           ))}
-          <a
-            href="#login"
+          <button
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
-            onClick={() => setOpen(false)}
+            onClick={() => { setOpen(false); navigate("/login"); }}
           >
             <LogIn size={16} />
             <span>Log in</span>
-          </a>
+          </button>
           <Button size="sm" className="w-full">Get Started</Button>
         </div>
       )}
