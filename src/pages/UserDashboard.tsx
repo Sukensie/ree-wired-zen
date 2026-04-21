@@ -58,8 +58,7 @@ const UserDashboard = () => {
             aria-label="Go to homepage"
             className="flex items-center gap-2"
           >
-            <img src={logo} alt="Ree-Wired" className="h-8 w-8" />
-            <span className="font-heading font-bold text-foreground">ree-wired</span>
+            <img src={logo} alt="Ree-Wired" className="h-8" />
           </button>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground hidden sm:block">Hi, Sarah 👋</span>

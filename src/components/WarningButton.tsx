@@ -1,13 +1,40 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const warningText = "This product is intended for mental training only. It is not treatment, medical care, or a substitute for professional support. If you are in distress, feel unsafe, or need urgent help, please contact your doctor, local emergency services, or Livslinien at +45 70 201 201.";
 
 const WarningButton = () => {
   const [isWarningOpen, setIsWarningOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isWarningOpen) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!buttonRef.current) return;
+      if (!buttonRef.current.contains(event.target as Node)) {
+        setIsWarningOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsWarningOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isWarningOpen]);
 
   return (
     <motion.button
+      ref={buttonRef}
       type="button"
       initial={false}
       animate={{
@@ -15,6 +42,7 @@ const WarningButton = () => {
         height: isWarningOpen ? 144 : 48,
       }}
       transition={{ type: "spring", stiffness: 260, damping: 24 }}
+      onClick={() => setIsWarningOpen((prev) => !prev)}
       onHoverStart={() => setIsWarningOpen(true)}
       onHoverEnd={() => setIsWarningOpen(false)}
       onFocus={() => setIsWarningOpen(true)}

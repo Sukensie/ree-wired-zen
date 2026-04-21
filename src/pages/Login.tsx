@@ -15,8 +15,7 @@ const Login = () => {
       >
         <div className="text-center mb-10">
           <a href="/" className="inline-flex items-center gap-2 mb-6">
-            <img src={logo} alt="Ree-Wired" className="h-10 w-10" />
-            <span className="font-heading font-bold text-xl text-foreground">ree-wired</span>
+            <img src={logo} alt="Ree-Wired" className="h-10" />
           </a>
           <h1 className="text-3xl font-heading font-bold text-foreground mb-2">Welcome back</h1>
           <p className="text-muted-foreground">Choose how you'd like to sign in</p>

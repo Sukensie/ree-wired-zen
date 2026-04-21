@@ -50,8 +50,7 @@ const Contact = () => {
       <header className="border-b border-border/50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <img src={logo} alt="Ree-Wired" className="h-9 w-9" />
-            <span className="font-heading font-bold text-lg text-foreground">ree-wired</span>
+            <img src={logo} alt="Ree-Wired" className="h-8" />
           </a>
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />

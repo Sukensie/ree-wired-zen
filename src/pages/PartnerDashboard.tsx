@@ -58,8 +58,7 @@ const PartnerDashboard = () => {
             aria-label="Go to homepage"
             className="flex items-center gap-3"
           >
-            <img src={logo} alt="Ree-Wired" className="h-8 w-8" />
-            <span className="font-heading font-bold text-foreground">ree-wired</span>
+            <img src={logo} alt="Ree-Wired" className="h-8" />
             <span className="text-xs bg-[hsl(var(--orange)/0.12)] text-[hsl(var(--orange))] px-2 py-0.5 rounded-full font-medium">Partner</span>
           </button>
           <div className="flex items-center gap-4">

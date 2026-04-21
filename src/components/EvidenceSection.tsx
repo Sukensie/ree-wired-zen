@@ -1,24 +1,29 @@
 import { motion } from "framer-motion";
+import { Brain, Dumbbell, RectangleGoggles, Eye, HandHelping } from "lucide-react";
 
 const facts = [
   {
     title: "Reclaim Your thoughts (control rumination)",
     body: "Repeated negative thinking (often called rumination) is a key factor in mental distress. Research shows that people can learn to disengage from these patterns and regain control over their attention.",
+    icon: Brain,
     source: ""
   },
   {
     title: "Exercise your mind, like it was muscle",
     body: "The method is based on well-documented psychological principles shown to significantly improve symptoms of anxiety and depression. Ree-Wired translates these into simple, repeatable mental exercises.",
+    icon: Dumbbell,
     source: "",
   },
   {
     title: "If you need help, you need help!",
-    body: "Your Mental well-being is what it's all about. Ree-Wired provides immediate, private training you can start in minutes. But we cannot tell you that Ree-Wired is the help you really need because we do not know you. If any doubt, please contact your family Docter ore other mental health care providers.",
+    body: "Your Mental well-being is what it's all about. Ree-Wired provides immediate, private training you can start in minutes. But we cannot tell you that Ree-Wired is the help you really need because we do not know you. If any doubt, please contact your family Docter or other mental health care providers.",
+    icon: HandHelping,
     source: "",
   },
   {
     title: "VR creates a mental fitness centre",
     body: "Ree-Wired offer Virtual reality training because it creates a focused, immersive environment, reducing external noise and giving direct access to how attention and thoughts are experienced. This makes it possible to train mental control more effectively. And it is so easy to use.",
+    icon: RectangleGoggles,
     source: "",
   },
 ];
@@ -60,13 +65,14 @@ const EvidenceSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="bg-white/[0.06] rounded-2xl p-8 border border-white/[0.08] hover:border-primary/30 transition-colors"
+            className="bg-white/[0.06] relative overflow-hidden rounded-2xl p-8 border border-white/[0.08] hover:border-primary/30 transition-colors"
           >
             <h3 className="text-primary font-heading font-bold text-lg mb-3">{f.title}</h3>
             <p className="text-white/70 leading-relaxed">{f.body}</p>
             {f.source && (
               <p className="text-white/40 text-sm mt-4">{f.source}</p>
             )}
+            <f.icon size={35} className="rotate-0 absolute top-2 right-2 text-white opacity-10" />
           </motion.div>
         ))}
       </div>
