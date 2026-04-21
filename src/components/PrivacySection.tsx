@@ -24,7 +24,7 @@ const PrivacySection = () => (
           Private by design.
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Mental health is deeply personal. That's why Ree-Wired is built with privacy at its core — not as an afterthought.
+          Mental health is deeply personal. <br/>That's why Ree-Wired is built with privacy at its core. Not as an afterthought.
         </p>
       </motion.div>
 

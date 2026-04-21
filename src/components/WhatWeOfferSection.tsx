@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { Smartphone, Headphones, Monitor, Sparkles, Shield, Clock } from "lucide-react";
-import homeVr from "@/assets/home-vr.jpg";
+import homeVr from "@/assets/home-vr.png";
 
 const features = [
   { icon: Smartphone, title: "Use your own smartphone", desc: "No expensive equipment needed" },
   { icon: Shield, title: "Completely anonymous", desc: "No stigma, total privacy" },
   { icon: Clock, title: "Train anytime", desc: "Use as often as you need, at home" },
   { icon: Headphones, title: "Affordable Solution", desc: "Simple and efficient VR set with Ree-Wired software." },
-  { icon: Monitor, title: "Persoanl mental fitness centre", desc: "Proven psychological principles" },
+  { icon: Monitor, title: "Personal mental fitness centre", desc: "Proven psychological principles" },
   { icon: Sparkles, title: "Track your improvement", desc: "Train and track – all in your personal Ree-Wired dashboard." },
 ];
 
@@ -23,7 +23,7 @@ const WhatWeOfferSection = () => (
         >
           <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-3">The Solution</p>
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-4">
-            A mental fitness tool you use at home.
+            A mental fitness tool<br/>you use at home.
           </h2>
           <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
             Ree-Wired uses VR technology combined with scientifically backed mental traning to bereak from rumination thoughts. The kind that can lead to depression, anxiety, social isolation, stress and other serious challenges.
@@ -67,7 +67,7 @@ const WhatWeOfferSection = () => (
             height={600}
           />
           <div className="absolute -bottom-6 -left-6 bg-card rounded-xl shadow-xl p-5 border border-orange/30">
-            <p className="font-heading font-bold text-2xl text-orange">93%</p>
+            <p className="font-heading font-bold text-2xl text-orange">73%</p>
             <p className="text-muted-foreground text-xs">of users report feeling calmer after first session</p>
           </div>
         </motion.div>

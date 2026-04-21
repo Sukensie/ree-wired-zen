@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Brain, ShieldAlert, Users } from "lucide-react";
+import { Heart, Brain, ShieldAlert, Users, ArrowDown } from "lucide-react";
 
 const triggers = [
   { icon: Heart, label: "Divorce & Loss", desc: "When relations break you keep asking yourselves the same questions." },
@@ -53,12 +53,21 @@ const LifeHappensSection = () => (
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mt-16 text-center"
       >
-        <div className="inline-flex items-center gap-3 bg-orange/85 rounded-full px-8 py-4">
-          <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-          <p className="text-white font-heading font-medium">
+
+        <div className="text-orange/85 gap-2 flex items-center justify-center text-center">
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1, repeat: Infinity, ease: "easeIn" }}
+          >
+            <ArrowDown size={18} className="-top-0.5 relative" />
+          </motion.div>
+          <p className="font-heading font-medium">
             There's a new way to deal with your vicious thoughts.
           </p>
         </div>
+        
+
+          
       </motion.div>
     </div>
   </section>

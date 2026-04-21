@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const warningText = "You should find your own way to deal with your personal mental challenges. Ree-Wired offer a simple solution recommended by experts.";
+const warningText = "This product is intended for mental training only. It is not treatment, medical care, or a substitute for professional support. If you are in distress, feel unsafe, or need urgent help, please contact your doctor, local emergency services, or Livslinien at +45 70 201 201.";
 
 const WarningButton = () => {
   const [isWarningOpen, setIsWarningOpen] = useState(false);
@@ -12,7 +12,7 @@ const WarningButton = () => {
       initial={false}
       animate={{
         width: isWarningOpen ? 360 : 48,
-        height: isWarningOpen ? 124 : 48,
+        height: isWarningOpen ? 144 : 48,
       }}
       transition={{ type: "spring", stiffness: 260, damping: 24 }}
       onHoverStart={() => setIsWarningOpen(true)}
@@ -26,7 +26,8 @@ const WarningButton = () => {
       {isWarningOpen ? (
         <div className="flex h-full w-full flex-col items-start justify-start px-4 py-3">
           <p className="font-heading text-xs font-bold uppercase tracking-[0.28em]">Warning</p>
-          <p className="mt-2 text-sm leading-snug">{warningText}</p>
+       
+          <p className="mt-2 text-xs leading-snug"><span className="font-bold">Important notice:</span> {warningText}</p>
         </div>
       ) : (
         <div className="flex h-full w-full items-center justify-center">

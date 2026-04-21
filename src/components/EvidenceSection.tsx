@@ -2,22 +2,24 @@ import { motion } from "framer-motion";
 
 const facts = [
   {
-    title: "Waiting times",
-    body: "Access to a psychologist in Denmark typically involves a wait of 12 weeks to 1 year, depending on the type of referral and provider.",
+    title: "Reclaim Your thoughts (control rumination)",
+    body: "Repeated negative thinking (often called rumination) is a key factor in mental distress. Research shows that people can learn to disengage from these patterns and regain control over their attention.",
+    source: ""
   },
   {
-    title: "VR in mental health contexts",
-    body: "Virtual reality has been used in clinical and research settings for mental health-related training since the 1990s, including for PTSD and anxiety-related disorders.",
-    source: "Documented in academic literature",
+    title: "Exercise your mind, like it was muscle",
+    body: "The method is based on well-documented psychological principles shown to significantly improve symptoms of anxiety and depression. Ree-Wired translates these into simple, repeatable mental exercises.",
+    source: "",
   },
   {
-    title: "Rumination and depression",
-    body: "Rumination — the tendency to repeatedly focus on distressing thoughts — is identified as a transdiagnostic factor in depression and anxiety research.",
+    title: "If you need help, you need help!",
+    body: "Your Mental well-being is what it's all about. Ree-Wired provides immediate, private training you can start in minutes. But we cannot tell you that Ree-Wired is the help you really need because we do not know you. If any doubt, please contact your family Docter ore other mental health care providers.",
+    source: "",
   },
   {
-    title: "Metacognitive therapy",
-    body: "Metacognitive Therapy (MCT) was developed by Adrian Wells and has shown efficacy rates above 80% in clinical trials for generalised anxiety disorder and depression.",
-    source: "Wells, A. (2009). Metacognitive Therapy. Guilford Press.",
+    title: "VR creates a mental fitness centre",
+    body: "Ree-Wired offer Virtual reality training because it creates a focused, immersive environment, reducing external noise and giving direct access to how attention and thoughts are experienced. This makes it possible to train mental control more effectively. And it is so easy to use.",
+    source: "",
   },
 ];
 
