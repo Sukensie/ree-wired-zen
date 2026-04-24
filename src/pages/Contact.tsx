@@ -37,12 +37,37 @@ const Contact = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_data: FormData) => {
-    await new Promise<void>((r) => setTimeout(r, 1000));
-    toast.success("Message sent!", {
-      description: "We'll get back to you within 24 hours.",
-    });
-    reset();
+  const onSubmit = async (data: FormData) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("subject", data.subject);
+      if (data.phone) formData.append("phone", data.phone);
+      formData.append("message", data.message);
+      // FormSubmit special fields
+      formData.append("_cc", "ts@ree-wired.com,hr@ree-wired.com");
+      formData.append("_subject", `[Ree-Wired Contact] ${data.subject}`);
+      formData.append("_template", "table");
+      formData.append("_captcha", "false");
+
+      const response = await fetch("https://formsubmit.co/ajax/mf@ree-wired.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+
+      toast.success("Message sent!", {
+        description: "We'll get back to you within 24 hours.",
+      });
+      reset();
+    } catch (error) {
+      toast.error("Failed to send message", {
+        description: "Please try again or email mf@ree-wired.com directly.",
+      });
+    }
   };
 
   return (
@@ -74,23 +99,6 @@ const Contact = () => {
           <p className="text-muted-foreground text-lg mb-10">
             Have a question, partnership inquiry, or just want to say hello? We'd love to hear from you.
           </p>
-
-          <div className="mb-6 rounded-xl border border-orange/30 bg-orange/10 p-4">
-            <p className="font-heading font-semibold text-sm text-foreground">
-              Contact form is currently under construction.
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              For any questions, please get in touch with Marianne at{" "}
-              <a href="mailto:mf@ree-wired.com" className="underline underline-offset-2 hover:text-primary">
-                mf@ree-wired.com
-              </a>{" "}
-              or{" "}
-              <a href="tel:+4530759080" className="underline underline-offset-2 hover:text-primary">
-                +45 30 75 90 80
-              </a>
-              .
-            </p>
-          </div>
 
           <div className="relative">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -165,11 +173,6 @@ const Contact = () => {
                 )}
               </Button>
             </form>
-
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 z-10 rounded-xl bg-white/70"
-            />
           </div>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
