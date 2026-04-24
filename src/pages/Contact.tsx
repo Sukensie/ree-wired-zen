@@ -100,23 +100,6 @@ const Contact = () => {
             Have a question, partnership inquiry, or just want to say hello? We'd love to hear from you.
           </p>
 
-          <div className="mb-6 rounded-xl border border-orange/30 bg-orange/10 p-4">
-            <p className="font-heading font-semibold text-sm text-foreground">
-              Contact form is currently under construction.
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              For any questions, please get in touch with Marianne at{" "}
-              <a href="mailto:mf@ree-wired.com" className="underline underline-offset-2 hover:text-primary">
-                mf@ree-wired.com
-              </a>{" "}
-              or{" "}
-              <a href="tel:+4530759080" className="underline underline-offset-2 hover:text-primary">
-                +45 30 75 90 80
-              </a>
-              .
-            </p>
-          </div>
-
           <div className="relative">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
