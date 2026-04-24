@@ -52,7 +52,7 @@ const Contact = () => {
       formData.append("_template", "table");
       formData.append("_captcha", "false");
 
-      const response = await fetch("https://formsubmit.co/ajax/ts@ree-wired.com", {
+      const response = await fetch("https://formsubmit.co/ajax/0e1e59d8b4e016922e756b19e108bd2a", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: formData,
