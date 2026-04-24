@@ -173,11 +173,6 @@ const Contact = () => {
                 )}
               </Button>
             </form>
-
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 z-10 rounded-xl bg-white/70"
-            />
           </div>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
