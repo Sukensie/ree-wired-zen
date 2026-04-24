@@ -37,12 +37,37 @@ const Contact = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_data: FormData) => {
-    await new Promise<void>((r) => setTimeout(r, 1000));
-    toast.success("Message sent!", {
-      description: "We'll get back to you within 24 hours.",
-    });
-    reset();
+  const onSubmit = async (data: FormData) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("subject", data.subject);
+      if (data.phone) formData.append("phone", data.phone);
+      formData.append("message", data.message);
+      // FormSubmit special fields
+      formData.append("_cc", "ts@ree-wired.com,hr@ree-wired.com");
+      formData.append("_subject", `[Ree-Wired Contact] ${data.subject}`);
+      formData.append("_template", "table");
+      formData.append("_captcha", "false");
+
+      const response = await fetch("https://formsubmit.co/ajax/mf@ree-wired.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+
+      toast.success("Message sent!", {
+        description: "We'll get back to you within 24 hours.",
+      });
+      reset();
+    } catch (error) {
+      toast.error("Failed to send message", {
+        description: "Please try again or email mf@ree-wired.com directly.",
+      });
+    }
   };
 
   return (
