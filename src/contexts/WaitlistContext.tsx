@@ -25,7 +25,6 @@ const WaitlistContext = createContext<WaitlistContextType | null>(null);
 export function WaitlistProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const waitlistUnderConstruction = true;
 
   const {
     register,
@@ -35,13 +34,33 @@ export function WaitlistProvider({ children }: { children: ReactNode }) {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormData) => {
-    if (waitlistUnderConstruction) return;
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("message", `${data.email} asks to join the waitlist.`);
+      formData.append("_subject", "[Ree-Wired Waitlist] New signup");
+      formData.append("_cc", "mf@ree-wired.com,hr@ree-wired.com");
+      formData.append("_template", "table");
+      formData.append("_captcha", "false");
 
-    await new Promise<void>((r) => setTimeout(r, 800));
-    setSubmitted(true);
-    toast.success("You're on the waitlist!", {
-      description: `We'll reach out to ${data.email} when we launch.`,
-    });
+      const response = await fetch("https://formsubmit.co/ajax/0e1e59d8b4e016922e756b19e108bd2a", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error("Failed to join waitlist");
+
+      setSubmitted(true);
+      toast.success("You're on the waitlist!", {
+        description: `We'll reach out to ${data.email} when we launch.`,
+      });
+    } catch (error) {
+      toast.error("Failed to join waitlist", {
+        description: "Please try again or email mf@ree-wired.com directly.",
+      });
+    }
   };
 
   const handleOpenChange = (value: boolean) => {
@@ -67,42 +86,24 @@ export function WaitlistProvider({ children }: { children: ReactNode }) {
                 <DialogDescription>
                   Be first to know when Ree-Wired launches.
                 </DialogDescription>
-              </DialogHeader>
-
-              {waitlistUnderConstruction && (
-                <div className="rounded-lg border border-orange/30 bg-orange/10 p-3 text-sm text-foreground">
-                  <p className="font-medium">Waitlist is currently under construction.</p>
-                  <p className="mt-1 text-muted-foreground">
-                    Please get in touch with Marianne at{" "}
-                    <a href="mailto:mf@ree-wired.com" className="underline underline-offset-2 hover:text-primary">
-                      mf@ree-wired.com
-                    </a>{" "}
-                    or{" "}
-                    <a href="tel:+4530759080" className="underline underline-offset-2 hover:text-primary">
-                      +45 30 75 90 80
-                    </a>
-                    .
-                  </p>
-                </div>
-              )}
+              </DialogHeader>             
 
               <div className="relative mt-2">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  <div className="space-y-1.5">
+                  <div className="space-y-1">
                     <Label htmlFor="wl-name">Full name</Label>
-                    <Input disabled={true} id="wl-name" placeholder="Jane Doe" {...register("name")} />
+                    <Input id="wl-name" placeholder="Jane Doe" {...register("name")} />
                     {errors.name && (
                       <p className="text-xs text-destructive">{errors.name.message}</p>
                     )}
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="space-y-1">
                     <Label htmlFor="wl-email">Email</Label>
                     <Input
                       id="wl-email"
                       type="email"
                       placeholder="jane@example.com"
-                      disabled={true}
                       {...register("email")}
                     />
                     {errors.email && (
@@ -113,20 +114,11 @@ export function WaitlistProvider({ children }: { children: ReactNode }) {
                   <Button
                     type="submit"
                     className="w-full"
-                    disabled={waitlistUnderConstruction || isSubmitting}
+                    disabled={isSubmitting}
                   >
-                    {waitlistUnderConstruction
-                      ? "Waitlist under construction"
-                      : isSubmitting
-                        ? "Joining…"
-                        : "Join waitlist"}
+                    {isSubmitting ? "Joining…" : "Join waitlist"}
                   </Button>
                 </form>
-
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 z-10 rounded-xl bg-white/70"
-                />
               </div>
             </>
           ) : (

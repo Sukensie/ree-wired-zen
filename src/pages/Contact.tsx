@@ -46,8 +46,7 @@ const Contact = () => {
       if (data.phone) formData.append("phone", data.phone);
       formData.append("message", data.message);
       // FormSubmit special fields
-      //formData.append("_cc", "mf@ree-wired.com,hr@ree-wired.com");
-      formData.append("_cc", "tom.soucek01@gmail.com");
+      formData.append("_cc", "mf@ree-wired.com,hr@ree-wired.com");
       formData.append("_subject", `[Ree-Wired Contact] ${data.subject}`);
       formData.append("_template", "table");
       formData.append("_captcha", "false");
