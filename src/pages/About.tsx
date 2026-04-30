@@ -103,14 +103,9 @@ const About = () => (
           </p>
         </motion.div>
 
-        {/* Team grid - asymmetric */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-fr">
+        {/* Team grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {team.map((m, i) => {
-            // Asymmetric layout: first 2 wider, next 3 narrower
-            const span =
-              i < 2
-                ? "lg:col-span-3"
-                : "lg:col-span-2";
             const isAccent = m.accent === "accent";
 
             return (
@@ -120,11 +115,11 @@ const About = () => (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`group relative ${span} rounded-3xl overflow-hidden border border-border/60 bg-card hover:border-foreground/20 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl`}
+                className="relative rounded-3xl overflow-hidden border border-border/60 bg-card"
               >
                 {/* Accent corner gradient */}
                 <div
-                  className={`absolute -top-20 -right-20 h-48 w-48 rounded-full blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 ${
+                  className={`absolute -top-20 -right-20 h-48 w-48 rounded-full blur-3xl opacity-60 ${
                     isAccent ? "bg-accent/30" : "bg-primary/30"
                   }`}
                 />
@@ -132,16 +127,14 @@ const About = () => (
                 <div className="relative p-7 flex flex-col h-full">
                   {/* Image with frame */}
                   <div className="relative mb-6 w-fit">
-                    <div
-                      className={`absolute -inset-1 rounded-2xl ${
-                        isAccent ? "bg-accent" : "bg-primary"
-                      } opacity-0 group-hover:opacity-100 blur transition-opacity duration-500`}
-                    />
                     <div className="relative h-24 w-24 rounded-2xl overflow-hidden bg-muted ring-1 ring-border">
                       <img
                         src={m.image}
                         alt={m.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                        width={512}
+                        height={512}
+                        className="h-full w-full object-cover"
                       />
                     </div>
                     {/* Number badge */}
@@ -161,20 +154,13 @@ const About = () => (
                     <h2 className="font-heading font-bold text-2xl text-foreground leading-tight mb-1">
                       {m.name}
                     </h2>
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`h-px w-6 ${
-                          isAccent ? "bg-accent" : "bg-primary"
-                        }`}
-                      />
-                      <p
-                        className={`text-sm font-heading font-semibold uppercase tracking-wider ${
-                          isAccent ? "text-accent" : "text-primary"
-                        }`}
-                      >
-                        {m.position}
-                      </p>
-                    </div>
+                    <p
+                      className={`text-sm font-heading font-semibold uppercase tracking-wider ${
+                        isAccent ? "text-accent" : "text-primary"
+                      }`}
+                    >
+                      {m.position}
+                    </p>
                   </div>
 
                   {/* Description */}
