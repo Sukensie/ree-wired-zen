@@ -2,6 +2,11 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import avatarFemale1 from "@/assets/avatar-female-1.png";
+import avatarMale1 from "@/assets/avatar-male-1.png";
+import avatarFemale2 from "@/assets/avatar-female-2.png";
+import avatarFemale3 from "@/assets/avatar-female-3.png";
+import avatarMale2 from "@/assets/avatar-male-2.png";
 
 interface TeamMember {
   name: string;
@@ -14,43 +19,48 @@ interface TeamMember {
 
 const team: TeamMember[] = [
   {
-    name: "Team Member 1",
-    position: "Position",
-    email: "person1@ree-wired.com",
-    image: "/placeholder.svg",
-    description: "Short description coming soon.",
+    name: "Marianne Fischer",
+    position: "Founder",
+    email: "mf@ree-wired.com",
+    image: avatarFemale1,
+    description:
+      "Founder of Ree-Wired, combining human-centred welfare design, digital leadership and healthcare insight to build scalable, evidence-based VR for mental wellbeing.",
     accent: "primary",
   },
   {
-    name: "Team Member 2",
-    position: "Position",
-    email: "person2@ree-wired.com",
-    image: "/placeholder.svg",
-    description: "Short description coming soon.",
+    name: "Henrik Rafn",
+    position: "Co-Founder",
+    email: "hr@ree-wired.com",
+    image: avatarMale1,
+    description:
+      "Experienced Business Development specialist with a Go-To-Market profile. Background from Marketing, Insurance, top management roles and startup challenges.",
     accent: "accent",
   },
   {
-    name: "Team Member 3",
-    position: "Position",
-    email: "person3@ree-wired.com",
-    image: "/placeholder.svg",
-    description: "Short description coming soon.",
+    name: "Birgit Lindqvist",
+    position: "Acad. Emp.",
+    email: "bl@ree-wired.com",
+    image: avatarFemale2,
+    description:
+      "Academic contributor at Ree-Wired, co-developing the core methodology and shaping ethical, evidence-based VR scenarios through pedagogy and psychoeducation.",
     accent: "primary",
   },
   {
-    name: "Team Member 4",
-    position: "Position",
-    email: "person4@ree-wired.com",
-    image: "/placeholder.svg",
-    description: "Short description coming soon.",
+    name: "Pil Hartmann K.",
+    position: "Co-founder Psychologist",
+    email: "ph@ree-wired.com",
+    image: avatarFemale3,
+    description:
+      "Experienced psychologist and hypnotherapist. Background in Cognitive Behavioral Therapy, psychoeducation, testing & assessments and health insurance and PFA.",
     accent: "accent",
   },
   {
-    name: "Team Member 5",
-    position: "Position",
-    email: "person5@ree-wired.com",
-    image: "/placeholder.svg",
-    description: "Short description coming soon.",
+    name: "Tomas Soucek",
+    position: "Co-founder IT Specialist",
+    email: "ts@ree-wired.com",
+    image: avatarMale2,
+    description:
+      "Software Engineer with startup experience, focused on web, automation, and cloud computing. Strong in UX and turning business goals into technical solutions.",
     accent: "primary",
   },
 ];
