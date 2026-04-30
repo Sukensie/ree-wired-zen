@@ -22,6 +22,12 @@ const Navbar = () => {
             </a>
           ))}
           <button
+            onClick={() => navigate("/about")}
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            About Us
+          </button>
+          <button
             onClick={() => navigate("/contact")}
             className="text-sm text-muted-foreground hover:text-primary transition-colors"
           >
@@ -51,6 +57,12 @@ const Navbar = () => {
               {l}
             </a>
           ))}
+          <button
+            className="block text-sm text-muted-foreground hover:text-primary"
+            onClick={() => { setOpen(false); navigate("/about"); }}
+          >
+            About Us
+          </button>
           <button
             className="block text-sm text-muted-foreground hover:text-primary"
             onClick={() => { setOpen(false); navigate("/contact"); }}
