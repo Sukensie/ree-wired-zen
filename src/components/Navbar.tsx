@@ -1,23 +1,40 @@
 import { useState } from "react";
 import { LogIn, Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const links = ["How it works", "Evidence", "Testimonials", "Privacy", "Pricing"];
+
+  const scrollToSection = (e: React.MouseEvent, label: string) => {
+    e.preventDefault();
+    const id = label.toLowerCase().replace(/ /g, "-");
+    setOpen(false);
+    if (pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate({ pathname: "/", hash: `#${id}` });
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <a href="#" className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2">
           <img src={logo} alt="Ree-Wired" className="h-8" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <a key={l} href={`#${l.toLowerCase().replace(/ /g, "-")}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a
+              key={l}
+              href={`/#${l.toLowerCase().replace(/ /g, "-")}`}
+              onClick={(e) => scrollToSection(e, l)}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               {l}
             </a>
           ))}
@@ -53,7 +70,12 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden bg-background border-t border-border px-6 py-4 space-y-3">
           {links.map((l) => (
-            <a key={l} href={`#${l.toLowerCase().replace(/ /g, "-")}`} className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setOpen(false)}>
+            <a
+              key={l}
+              href={`/#${l.toLowerCase().replace(/ /g, "-")}`}
+              onClick={(e) => scrollToSection(e, l)}
+              className="block text-sm text-muted-foreground hover:text-primary"
+            >
               {l}
             </a>
           ))}

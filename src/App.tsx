@@ -11,6 +11,7 @@ import About from "./pages/About.tsx";
 import UserDashboard from "./pages/UserDashboard.tsx";
 import PartnerDashboard from "./pages/PartnerDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ScrollToHash from "@/components/ScrollToHash";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <WaitlistProvider>
+          <ScrollToHash />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
