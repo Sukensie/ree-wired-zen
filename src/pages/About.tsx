@@ -171,7 +171,7 @@ const About = () => (
                   {/* Email */}
                   <a
                     href={`mailto:${m.email}`}
-                    className="group/link mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-muted/50 hover:bg-foreground hover:text-background transition-all duration-300"
+                    className="group/link mt-auto inline-flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors duration-300"
                   >
                     <span className="inline-flex items-center gap-2 text-sm font-medium truncate">
                       <Mail size={14} className="shrink-0" />
