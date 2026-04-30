@@ -7,6 +7,7 @@ import { WaitlistProvider } from "@/contexts/WaitlistContext";
 import Index from "./pages/Index.tsx";
 import Login from "./pages/Login.tsx";
 import Contact from "./pages/Contact.tsx";
+import About from "./pages/About.tsx";
 import UserDashboard from "./pages/UserDashboard.tsx";
 import PartnerDashboard from "./pages/PartnerDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
             <Route path="/dashboard/user" element={<UserDashboard />} />
             <Route path="/dashboard/partner" element={<PartnerDashboard />} />
             <Route path="*" element={<NotFound />} />
