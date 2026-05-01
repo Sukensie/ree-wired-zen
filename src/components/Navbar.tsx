@@ -46,7 +46,7 @@ const Navbar = () => {
           </button>
           <button
             onClick={() => navigate("/contact")}
-            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="text-sm text-white hover:bg-primary-dark bg-primary py-1 px-2 rounded-md transition-colors"
           >
             Contact Us
           </button>
