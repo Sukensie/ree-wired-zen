@@ -2,12 +2,11 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import avatarFemale1 from "@/assets/avatar-female-1.png";
-import avatarMale1 from "@/assets/avatar-male-1.png";
-import avatarFemale2 from "@/assets/avatar-female-2.png";
-import avatarFemale3 from "@/assets/avatar-female-3.png";
-import avatarMale2 from "@/assets/avatar-male-2.png";
-//import tomasPhoto from "@/assets/tomas.png";
+import mariannePhoto from "@/assets/marianne.jpg";
+import henrikPhoto from "@/assets/henrik.jpg";
+import tomasPhoto from "@/assets/tomas.jpg";
+import pilPhoto from "@/assets/pil.jpg";
+import birgitPhoto from "@/assets/birgit.jpg";
 
 interface TeamMember {
   name: string;
@@ -23,7 +22,7 @@ const team: TeamMember[] = [
     name: "Marianne Fischer",
     position: "Founder",
     email: "mf@ree-wired.com",
-    image: avatarFemale1,
+    image: mariannePhoto,
     description:
       "Founder of Ree-Wired, combining human-centred welfare design, digital leadership and healthcare insight to build scalable, evidence-based VR for mental wellbeing.",
     accent: "primary",
@@ -32,7 +31,7 @@ const team: TeamMember[] = [
     name: "Henrik Rafn",
     position: "Co-Founder",
     email: "hr@ree-wired.com",
-    image: avatarMale1,
+    image: henrikPhoto,
     description:
       "Experienced Business Development specialist with a Go-To-Market profile. Background from Marketing, Insurance, top management roles and startup challenges.",
     accent: "accent",
@@ -41,7 +40,7 @@ const team: TeamMember[] = [
     name: "Tomáš Souček",
     position: "Co-founder | IT Specialist",
     email: "ts@ree-wired.com",
-    image: avatarMale2,
+    image: tomasPhoto,
     description:
       "Software Engineer with startup experience, focused on web, automation, and cloud computing. Strong in UX and turning business goals into technical solutions.",
     accent: "primary",
@@ -50,7 +49,7 @@ const team: TeamMember[] = [
     name: "Pil Hartmann Kragenskjold",
     position: "Co-founder | Psychologist",
     //email: "ph@ree-wired.com",
-    image: avatarFemale3,
+    image: pilPhoto,
     description:
       "Experienced psychologist and hypnotherapist. Background in Cognitive Behavioral Therapy, psychoeducation, testing & assessments and health insurance and PFA.",
     accent: "accent",
@@ -59,7 +58,7 @@ const team: TeamMember[] = [
     name: "Birgit Lindqvist",
     position: "Academic Employee",
     //email: "bl@ree-wired.com",
-    image: avatarFemale2,
+    image: birgitPhoto,
     description:
       "Academic contributor at Ree-Wired, co-developing the core methodology and shaping ethical, evidence-based VR scenarios through pedagogy and psychoeducation.",
     accent: "primary",
@@ -127,7 +126,7 @@ const About = () => (
                         loading="lazy"
                         width={512}
                         height={512}
-                        className="h-full w-full object-cover scale-110"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   </div>
