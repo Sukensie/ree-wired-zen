@@ -12,6 +12,12 @@
     <meta property="og:description" content="A VR-based mental fitness tool that breaks the vicious cycle of thoughts. Anonymous, evidence-based, from the comfort of your home." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://ree-wired.com/ree-wired-og.gif" />
+    <script>
+      (function () {
+        var p = new URLSearchParams(window.location.search).get('p');
+        if (p) window.history.replaceState(null, '', p);
+      })();
+    </script>
   </head>
 
   <body>
