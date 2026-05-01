@@ -86,13 +86,13 @@ const Navbar = () => {
             About Us
           </button>
           <button
-            className="block text-sm text-muted-foreground hover:text-primary"
+            className="relative -left-1 block text-sm text-white hover:bg-primary-dark bg-primary py-1 px-2 rounded-sm hover:text-primary"
             onClick={() => { setOpen(false); navigate("/contact"); }}
           >
             Contact Us
           </button>
           <button
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
+            className="relative -left-1 flex items-center gap-2 text-sm text-muted-foreground bg-muted-foreground/15 py-0.5 px-1 rounded-sm hover:text-primary"
             onClick={() => { setOpen(false); navigate("/login"); }}
           >
             <LogIn size={16} />
