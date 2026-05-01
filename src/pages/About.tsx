@@ -106,8 +106,7 @@ const About = () => (
               <motion.article
                 key={m.name}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="relative rounded-3xl overflow-hidden border border-border/60 bg-card"
               >
